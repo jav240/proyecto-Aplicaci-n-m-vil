@@ -86,7 +86,7 @@ fun TarjetaVuelo(
                     Text(text = "Piloto al mando: " + vuelo.piloto, fontSize = 16.sp)
                     Text(text = "Vuelo gratuito para socios y su familia directa.", fontSize = 14.sp)
                 } else {
-                    Text(text = "Toca la tarjeta para ver más", fontSize = 12.sp, color = Color.Gray)
+                    Text(text = "Toca para ver más detalles", fontSize = 12.sp, color = Color.Gray)
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Button(onClick = { onVerDetalle() }) {
