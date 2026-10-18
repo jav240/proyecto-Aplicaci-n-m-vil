@@ -47,7 +47,7 @@ fun Register(
     val state = viewModel.uiState
     val context = LocalContext.current
 
-    // El botón cambia de color con una animación cuando el formulario es válido
+
     val colorBoton by animateColorAsState(
         targetValue = if (viewModel.formularioValido) VerdeCapebe else AzulCapebe,
         label = "colorBotonRegistro"
@@ -135,7 +135,7 @@ fun Register(
                 colors = ButtonDefaults.buttonColors(containerColor = colorBoton),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Registrarse")
+                Text(text = "Crear mi cuenta")
             }
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedButton(
