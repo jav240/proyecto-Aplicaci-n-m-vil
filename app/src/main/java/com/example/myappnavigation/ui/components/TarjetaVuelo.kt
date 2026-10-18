@@ -39,7 +39,7 @@ fun TarjetaVuelo(
     aceptado: Boolean,
     onVerDetalle: () -> Unit
 ) {
-    // Al tocar la tarjeta se expande con animación y muestra más información
+
     var expandida by remember { mutableStateOf(false) }
 
     Card(
@@ -47,7 +47,7 @@ fun TarjetaVuelo(
             .fillMaxWidth()
             .animateContentSize()
             .clickable { expandida = !expandida },
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
