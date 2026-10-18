@@ -61,7 +61,7 @@ fun VuelosDisponibles(
             Text("(datos ficticios de ejemplo)", style = MaterialTheme.typography.bodyLarge)
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Recurso nativo: calendario del dispositivo para elegir la fecha
+
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_calendario),

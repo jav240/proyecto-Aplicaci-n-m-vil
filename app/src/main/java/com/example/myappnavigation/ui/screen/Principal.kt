@@ -71,10 +71,10 @@ fun Principal(
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
-            Text("¡Bienvenid@ al Club!", style = MaterialTheme.typography.headlineMedium)
+            Text("¡Bienvenid@, " + sesion.correo + "!", style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Funcionalidad 1: reservar un vuelo
+
             Button(onClick = { onNavigateToVuelos() }, modifier = Modifier.fillMaxWidth()) {
                 Text(text = "Ver vuelos disponibles")
             }
