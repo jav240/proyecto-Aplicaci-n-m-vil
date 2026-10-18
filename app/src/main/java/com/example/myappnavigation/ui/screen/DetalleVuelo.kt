@@ -64,7 +64,7 @@ fun DetalleVuelo(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("Vuelo recreativo gratuito", style = MaterialTheme.typography.headlineMedium)
+            Text("Vuelo recreativo gratuito", style = MaterialTheme.typography.headlineLarge)
             Spacer(modifier = Modifier.height(16.dp))
 
             if (vuelo == null) {
