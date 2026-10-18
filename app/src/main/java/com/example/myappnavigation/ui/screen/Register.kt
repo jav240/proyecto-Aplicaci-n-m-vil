@@ -77,7 +77,7 @@ fun Register(
                 error = state.nameError,
                 icono = Icons.Default.Person
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             CampoFormulario(
                 value = state.email,
@@ -87,7 +87,7 @@ fun Register(
                 icono = Icons.Default.Email,
                 keyboardType = KeyboardType.Email
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             CampoFormulario(
                 value = state.password,
@@ -99,7 +99,7 @@ fun Register(
                 esPassword = true
             )
             Text("Mínimo 6 caracteres.", style = MaterialTheme.typography.bodySmall)
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             CampoFormulario(
                 value = state.confirmPassword,
