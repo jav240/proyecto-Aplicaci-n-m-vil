@@ -9,9 +9,9 @@ import com.example.myappnavigation.model.VueloModel
 
 class VuelosViewModel : ViewModel() {
 
-    private val todos = VuelosFicticios.lista
+    private val todos = VuelosFicticios.lista.sortedBy { it.fechaIso + it.horario }
 
-    /** Fecha elegida en el calendario (yyyy-MM-dd) o null si no hay filtro. */
+
     var fechaFiltro by mutableStateOf<String?>(null)
         private set
 
@@ -21,7 +21,7 @@ class VuelosViewModel : ViewModel() {
             return if (fecha == null) todos else todos.filter { it.fechaIso == fecha }
         }
 
-    // El calendario nativo entrega el mes de 0 a 11
+
     fun onFechaSeleccionada(year: Int, month: Int, day: Int) {
         fechaFiltro = "%04d-%02d-%02d".format(year, month + 1, day)
     }
