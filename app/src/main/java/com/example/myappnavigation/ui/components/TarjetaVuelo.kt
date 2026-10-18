@@ -68,7 +68,7 @@ fun TarjetaVuelo(
                 Text(text = vuelo.fechaTexto + " · " + vuelo.horario, fontSize = 16.sp)
                 Text(text = "Aeronave: " + vuelo.aeronave, fontSize = 16.sp)
                 Text(
-                    text = "Cupos disponibles: " + vuelo.cupos,
+                    text = if (vuelo.cupos > 0) "Cupos disponibles: " + vuelo.cupos else "Sin cupos",
                     color = NaranjaCapebe,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
