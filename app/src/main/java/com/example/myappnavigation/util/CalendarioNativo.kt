@@ -8,7 +8,7 @@ import com.example.myappnavigation.model.VueloModel
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-/** Recurso nativo: abre el calendario del dispositivo con el evento del vuelo ya cargado. */
+
 object CalendarioNativo {
 
     fun agendarVuelo(context: Context, vuelo: VueloModel): Boolean {
@@ -19,7 +19,7 @@ object CalendarioNativo {
 
         val intent = Intent(Intent.ACTION_INSERT).apply {
             data = CalendarContract.Events.CONTENT_URI
-            putExtra(CalendarContract.Events.TITLE, "Vuelo recreativo CAPEBE")
+            putExtra(CalendarContract.Events.TITLE, "Vuelo recreativo CAPEBE (" + vuelo.horario + ")")
             putExtra(CalendarContract.Events.EVENT_LOCATION, "Aeródromo " + vuelo.base)
             putExtra(
                 CalendarContract.Events.DESCRIPTION,
