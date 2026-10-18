@@ -1,6 +1,7 @@
 package com.example.myappnavigation.ui.screen
 
 import android.widget.Toast
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -78,6 +79,7 @@ fun PaseAbordaje(
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
+                    border = BorderStroke(2.dp, AzulCapebe),
                     colors = CardDefaults.cardColors(containerColor = Color.White),
                     elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
                 ) {
@@ -108,7 +110,7 @@ fun PaseAbordaje(
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                // Código QR generado con los datos del socio, el vuelo y el consentimiento
+
                 val contenidoQr = GeneradorQr.contenidoPase(sesion.correo, vuelo, sesion.consentimientoFirmado)
                 val qr = remember(contenidoQr) { GeneradorQr.generar(contenidoQr).asImageBitmap() }
                 Box(
@@ -131,7 +133,7 @@ fun PaseAbordaje(
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                // Recurso nativo: agenda la fecha del vuelo en el calendario del dispositivo
+
                 OutlinedButton(
                     onClick = {
                         if (!CalendarioNativo.agendarVuelo(context, vuelo)) {
