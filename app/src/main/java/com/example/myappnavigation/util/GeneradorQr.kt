@@ -7,10 +7,10 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.QRCodeWriter
 
-/** Genera el código QR del pase de abordaje con la librería ZXing. */
+
 object GeneradorQr {
 
-    /** Texto que queda codificado en el QR (lo leerá el operador en el aeródromo). */
+
     fun contenidoPase(correo: String, vuelo: VueloModel, consentimientoFirmado: Boolean): String =
         "CAPEBE|PASE" +
             "|socio=" + correo +
@@ -18,8 +18,9 @@ object GeneradorQr {
             "|base=" + vuelo.base +
             "|fecha=" + vuelo.fechaIso +
             "|horario=" + vuelo.horario +
-            "|aeronave=" + vuelo.aeronave +
-            "|consentimiento=" + (if (consentimientoFirmado) "FIRMADO" else "PENDIENTE")
+                "|aeronave=" + vuelo.aeronave +
+                "|emitido=" + java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US).format(java.util.Date()) +
+                "|consentimiento=" + (if (consentimientoFirmado) "FIRMADO" else "PENDIENTE")
 
     fun generar(texto: String, tamano: Int = 512): Bitmap {
         val hints = mapOf(
