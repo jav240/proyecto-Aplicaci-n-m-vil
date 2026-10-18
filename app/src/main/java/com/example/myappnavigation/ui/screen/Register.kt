@@ -98,6 +98,7 @@ fun Register(
                 keyboardType = KeyboardType.Password,
                 esPassword = true
             )
+            Text("Mínimo 6 caracteres.", style = MaterialTheme.typography.bodySmall)
             Spacer(modifier = Modifier.height(4.dp))
 
             CampoFormulario(
@@ -110,7 +111,7 @@ fun Register(
                 esPassword = true
             )
 
-            // Mensaje general, con animación de entrada y salida
+
             AnimatedVisibility(visible = state.errorMessage != null) {
                 Text(
                     text = state.errorMessage ?: "",
