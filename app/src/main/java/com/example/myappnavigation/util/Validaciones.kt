@@ -9,6 +9,7 @@ object Validaciones {
     fun nombre(valor: String): String? = when {
         valor.isBlank() -> "Ingresa tu nombre completo."
         valor.trim().length < 3 -> "El nombre es muy corto."
+        !valor.trim().contains(" ") -> "Ingresa nombre y apellido."
         else -> null
     }
 
