@@ -49,7 +49,7 @@ fun Consentimiento(
     val vuelo = sesion.vueloAceptado
     val firmado = sesion.consentimientoFirmado
 
-    // El estado del consentimiento cambia de color con una animación
+
     val colorEstado by animateColorAsState(
         targetValue = if (firmado) VerdeCapebe else NaranjaCapebe,
         label = "colorConsentimiento"

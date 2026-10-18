@@ -49,7 +49,7 @@ import com.example.myappnavigation.ui.theme.NaranjaCapebe
 fun Inicio(onNavigateToLogin: () -> Unit) {
     val context = LocalContext.current
 
-    // Estado que dispara la animación de entrada del logo
+
     var logoVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { logoVisible = true }
 

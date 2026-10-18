@@ -6,7 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import com.example.myappnavigation.model.VueloModel
 
-/** Recurso nativo: abre la app de correo del dispositivo con la confirmación del vuelo ya redactada. */
+
 object CorreoNativo {
     fun abrirBorradorConfirmacion(context: Context, destinatario: String, vuelo: VueloModel): Boolean {
         val intent = Intent(Intent.ACTION_SENDTO).apply {
@@ -17,7 +17,8 @@ object CorreoNativo {
                 Intent.EXTRA_TEXT,
                 "Has aceptado el vuelo del " + vuelo.fechaTexto + ", " + vuelo.horario +
                     " en la base " + vuelo.base + ".\nAeronave: " + vuelo.aeronave +
-                    "\nRecuerda firmar el consentimiento de vuelo antes de abordar."
+                        "\nRecuerda firmar el consentimiento de vuelo antes de abordar." +
+                        "\nGracias por volar con CAPEBE."
             )
         }
         return try {

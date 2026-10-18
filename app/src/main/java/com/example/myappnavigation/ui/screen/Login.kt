@@ -79,7 +79,7 @@ fun Login(
                 esPassword = true
             )
 
-            // Mensaje de error general, con animación de entrada y salida
+
             AnimatedVisibility(visible = viewModel.errorMessage != null) {
                 Text(
                     text = viewModel.errorMessage ?: "",
