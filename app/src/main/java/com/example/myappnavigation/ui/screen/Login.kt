@@ -106,7 +106,7 @@ fun Login(
                 onClick = { onNavigateToRegister() },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Ir a Registro")
+                Text(text = "Crear cuenta nueva")
             }
         }
     }
