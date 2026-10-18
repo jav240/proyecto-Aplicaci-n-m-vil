@@ -39,6 +39,8 @@ import com.example.myappnavigation.ui.theme.CieloCapebe
 import com.example.myappnavigation.ui.viewmodel.SesionViewModel
 import com.example.myappnavigation.util.CorreoNativo
 import com.example.myappnavigation.util.CorreoSmtp
+import androidx.compose.material3.ButtonDefaults
+import com.example.myappnavigation.ui.theme.VerdeCapebe
 
 @Composable
 fun DetalleVuelo(
@@ -112,7 +114,7 @@ fun DetalleVuelo(
                             val correo = sesion.correo
                             val firmado = sesion.consentimientoFirmado
                             if (CorreoSmtp.configurado()) {
-                                // Envío real del correo (con el QR adjunto) en segundo plano
+
                                 Toast.makeText(context, "¡Vuelo aceptado! Enviando confirmación a tu correo...", Toast.LENGTH_SHORT).show()
                                 CorreoSmtp.enviarConfirmacion(correo, vuelo, firmado) { ok ->
                                     val aviso = if (ok) {
@@ -123,7 +125,7 @@ fun DetalleVuelo(
                                     Toast.makeText(context, aviso, Toast.LENGTH_LONG).show()
                                 }
                             } else {
-                                // Respaldo: abre la app de correo con la confirmación redactada
+
                                 val abierto = CorreoNativo.abrirBorradorConfirmacion(context, correo, vuelo)
                                 val mensaje = if (abierto) {
                                     "¡Vuelo aceptado! Revisa tu correo para enviar la confirmación."
@@ -135,6 +137,7 @@ fun DetalleVuelo(
                             onVueloAceptado()
                         }
                     },
+                    colors = ButtonDefaults.buttonColors(containerColor = VerdeCapebe),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(text = "Aceptar este vuelo")
