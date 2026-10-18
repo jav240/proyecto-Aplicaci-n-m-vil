@@ -143,7 +143,7 @@ fun Register(
                 onClick = { onNavigateToLogin() },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Ya tengo cuenta")
+                Text(text = "Ya tengo cuenta, iniciar sesión")
             }
         }
     }
