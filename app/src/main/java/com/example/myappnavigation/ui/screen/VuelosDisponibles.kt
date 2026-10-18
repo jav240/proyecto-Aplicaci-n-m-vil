@@ -95,7 +95,7 @@ fun VuelosDisponibles(
 
             val vuelos = viewModel.vuelosFiltrados
             if (vuelos.isEmpty()) {
-                Text("No hay vuelos disponibles en esa fecha.", style = MaterialTheme.typography.bodyLarge)
+                Text("Aún no hay vuelos para esta fecha.", style = MaterialTheme.typography.bodyLarge)
             }
             vuelos.forEach { vuelo ->
                 TarjetaVuelo(
