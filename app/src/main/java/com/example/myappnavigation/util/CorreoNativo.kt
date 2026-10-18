@@ -12,7 +12,7 @@ object CorreoNativo {
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")
             putExtra(Intent.EXTRA_EMAIL, arrayOf(destinatario))
-            putExtra(Intent.EXTRA_SUBJECT, "Confirmación de vuelo recreativo CAPEBE")
+            putExtra(Intent.EXTRA_SUBJECT, "Tu vuelo en CAPEBE está confirmado")
             putExtra(
                 Intent.EXTRA_TEXT,
                 "Has aceptado el vuelo del " + vuelo.fechaTexto + ", " + vuelo.horario +

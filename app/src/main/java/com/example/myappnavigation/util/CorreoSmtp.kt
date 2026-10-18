@@ -88,7 +88,7 @@ object CorreoSmtp {
         val mensaje = MimeMessage(sesion).apply {
             setFrom(InternetAddress(ConfigCorreo.REMITENTE, "CAPEBE", "UTF-8"))
             setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario))
-            setSubject("Confirmación de vuelo recreativo CAPEBE", "UTF-8")
+            setSubject("Tu vuelo en CAPEBE está confirmado", "UTF-8")
             setContent(MimeMultipart("mixed").apply {
                 addBodyPart(cuerpo)
                 addBodyPart(adjunto)
