@@ -86,7 +86,7 @@ fun Principal(
                 enabled = sesion.tieneVuelo,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Ir a mi pase de abordaje")
+                Text(text = "Ver mi pase de abordaje")
             }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
