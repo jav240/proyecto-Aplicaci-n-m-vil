@@ -2,7 +2,7 @@
 
 App Android (Kotlin, Jetpack Compose, Material 3) para el rol **socio** del Club Aéreo del Personal de BancoEstado.
 
-**Integrantes:** (completar con nombres y número de equipo)
+**Integrantes:** Fransisco, Javier
 
 ## Funcionalidades
 - Registro e inicio de sesión con formularios validados (ícono y mensaje por campo).
