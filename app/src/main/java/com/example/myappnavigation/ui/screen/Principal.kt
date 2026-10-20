@@ -76,11 +76,11 @@ fun Principal(
 
 
             Button(onClick = { onNavigateToVuelos() }, modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Ver vuelos disponibles")
+                Text(text = "Reservar un vuelo")
             }
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Funcionalidad 2: ir al aeródromo (solo si ya aceptó un vuelo)
+
             Button(
                 onClick = { onNavigateToPase() },
                 enabled = sesion.tieneVuelo,
