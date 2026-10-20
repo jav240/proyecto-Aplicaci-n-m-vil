@@ -91,7 +91,7 @@ fun DetalleVuelo(
                                 fontWeight = FontWeight.Bold
                             )
                             Text("Fecha: " + vuelo.fechaTexto, fontSize = 16.sp)
-                            Text("Bloque: " + vuelo.horario, fontSize = 16.sp)
+                            Text("Horario: " + vuelo.horario, fontSize = 16.sp)
                             Text("Aeronave: " + vuelo.aeronave, fontSize = 16.sp)
                             Text("Piloto al mando: " + vuelo.piloto, fontSize = 16.sp)
                             Text("Cupos disponibles: " + vuelo.cupos, fontSize = 16.sp)
