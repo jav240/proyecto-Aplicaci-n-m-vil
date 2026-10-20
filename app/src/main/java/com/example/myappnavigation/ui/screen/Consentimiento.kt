@@ -117,7 +117,7 @@ fun Consentimiento(
                                     checked = firmado,
                                     onCheckedChange = { sesion.onConsentimientoChanged(it) }
                                 )
-                                Text("Leí y acepto el consentimiento", fontSize = 14.sp)
+                                Text("Declaro haber leído y acepto el consentimiento", fontSize = 14.sp)
                             }
                         }
                     }
