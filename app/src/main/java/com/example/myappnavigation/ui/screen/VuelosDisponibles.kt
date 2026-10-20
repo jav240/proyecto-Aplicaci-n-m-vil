@@ -57,7 +57,7 @@ fun VuelosDisponibles(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            Text("Elige tu vuelo", style = MaterialTheme.typography.headlineMedium)
+            Text("Elige tu vuelo recreativo", style = MaterialTheme.typography.headlineMedium)
             Text("(datos ficticios de ejemplo)", style = MaterialTheme.typography.bodyLarge)
             Spacer(modifier = Modifier.height(12.dp))
 
