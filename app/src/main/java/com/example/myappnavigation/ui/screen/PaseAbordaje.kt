@@ -74,7 +74,7 @@ fun PaseAbordaje(
             Spacer(modifier = Modifier.height(16.dp))
 
             if (vuelo == null) {
-                Text("Acepta un vuelo para ver tu pase.", style = MaterialTheme.typography.bodyLarge)
+                Text("Aún no tienes un vuelo aceptado.", style = MaterialTheme.typography.bodyLarge)
             } else {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
