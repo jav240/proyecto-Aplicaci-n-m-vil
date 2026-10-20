@@ -94,7 +94,7 @@ fun Principal(
                 enabled = sesion.tieneVuelo,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Mi consentimiento de vuelo")
+                Text(text = "Firmar mi consentimiento")
             }
             if (!sesion.tieneVuelo) {
                 Spacer(modifier = Modifier.height(8.dp))
