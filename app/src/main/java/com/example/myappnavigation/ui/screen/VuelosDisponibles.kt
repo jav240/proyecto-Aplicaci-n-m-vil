@@ -79,7 +79,7 @@ fun VuelosDisponibles(
                         hoy.get(Calendar.DAY_OF_MONTH)
                     ).show()
                 }) {
-                    Text(text = "Elegir fecha")
+                    Text(text = "Filtrar por fecha")
                 }
             }
 
