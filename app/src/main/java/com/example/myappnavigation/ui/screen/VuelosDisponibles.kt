@@ -86,7 +86,7 @@ fun VuelosDisponibles(
             val fecha = viewModel.fechaFiltro
             if (fecha != null) {
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("Mostrando vuelos del " + fecha, style = MaterialTheme.typography.bodyLarge)
+                Text("Vuelos del día " + fecha, style = MaterialTheme.typography.bodyLarge)
                 OutlinedButton(onClick = { viewModel.quitarFiltro() }) {
                     Text(text = "Quitar filtro")
                 }
