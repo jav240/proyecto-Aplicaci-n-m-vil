@@ -43,3 +43,7 @@ El pase de abordaje genera un QR con ZXing (`util/GeneradorQr.kt`) con los datos
 
 ## Envío real de correo
 `util/CorreoSmtp.kt` envía la confirmación (con el QR adjunto) por SMTP de Gmail al aceptar el vuelo. Completa `REMITENTE` y `CLAVE_APP` (contraseña de aplicación de Google) en `util/ConfigCorreo.kt`. Si quedan vacíos, la app abre la app de correo del dispositivo como respaldo.
+
+
+## Pantallas
+Inicio, Login, Registro, Menú del socio, Vuelos disponibles, Detalle del vuelo, Consentimiento y Pase de abordaje.
