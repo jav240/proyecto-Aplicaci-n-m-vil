@@ -20,7 +20,7 @@ object CalendarioNativo {
         val intent = Intent(Intent.ACTION_INSERT).apply {
             data = CalendarContract.Events.CONTENT_URI
             putExtra(CalendarContract.Events.TITLE, "Vuelo recreativo CAPEBE (" + vuelo.horario + ")")
-            putExtra(CalendarContract.Events.EVENT_LOCATION, "Aeródromo " + vuelo.base)
+            putExtra(CalendarContract.Events.EVENT_LOCATION, "Aeródromo CAPEBE, base " + vuelo.base)
             putExtra(
                 CalendarContract.Events.DESCRIPTION,
                 "Base: " + vuelo.base + "\nAeronave: " + vuelo.aeronave + "\nPiloto: " + vuelo.piloto +
