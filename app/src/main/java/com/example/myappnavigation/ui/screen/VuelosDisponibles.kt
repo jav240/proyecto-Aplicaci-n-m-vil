@@ -88,7 +88,7 @@ fun VuelosDisponibles(
                 Spacer(modifier = Modifier.height(8.dp))
                 Text("Vuelos del día " + fecha, style = MaterialTheme.typography.bodyLarge)
                 OutlinedButton(onClick = { viewModel.quitarFiltro() }) {
-                    Text(text = "Quitar filtro")
+                    Text(text = "Ver todos los vuelos")
                 }
             }
             Spacer(modifier = Modifier.height(12.dp))
