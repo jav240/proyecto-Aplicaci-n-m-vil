@@ -99,7 +99,7 @@ fun Principal(
             if (!sesion.tieneVuelo) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    "Acepta un vuelo para habilitar tu pase y tu consentimiento.",
+                    "Reserva un vuelo para habilitar tu pase y tu consentimiento.",
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
