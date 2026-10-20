@@ -140,7 +140,7 @@ fun DetalleVuelo(
                     colors = ButtonDefaults.buttonColors(containerColor = VerdeCapebe),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = "Aceptar este vuelo")
+                    Text(text = "Confirmar este vuelo")
                 }
             }
         }
