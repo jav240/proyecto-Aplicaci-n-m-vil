@@ -84,7 +84,7 @@ fun TarjetaVuelo(
                 if (expandida) {
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(text = "Piloto al mando: " + vuelo.piloto, fontSize = 16.sp)
-                    Text(text = "Vuelo gratuito para socios y su familia directa.", fontSize = 14.sp)
+                    Text(text = "Gratis para socios y su familia directa (cónyuge e hijos).", fontSize = 14.sp)
                 } else {
                     Text(text = "Toca para ver más detalles", fontSize = 12.sp, color = Color.Gray)
                 }
