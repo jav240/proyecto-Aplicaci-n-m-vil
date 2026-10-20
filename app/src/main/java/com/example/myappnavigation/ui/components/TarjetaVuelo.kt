@@ -75,7 +75,7 @@ fun TarjetaVuelo(
                 )
                 if (aceptado) {
                     Text(
-                        text = "Vuelo aceptado",
+                        text = "Ya aceptaste este vuelo",
                         color = VerdeCapebe,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
