@@ -104,7 +104,7 @@ fun DetalleVuelo(
                 }
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    "Al aceptar el vuelo te llegará la confirmación a tu correo.",
+                    "Te enviaremos la confirmación a tu correo al aceptar el vuelo.",
                     style = MaterialTheme.typography.bodyLarge
                 )
                 Spacer(modifier = Modifier.height(16.dp))
