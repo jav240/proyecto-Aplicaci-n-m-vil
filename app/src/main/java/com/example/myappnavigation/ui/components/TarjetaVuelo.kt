@@ -90,7 +90,7 @@ fun TarjetaVuelo(
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Button(onClick = { onVerDetalle() }) {
-                    Text(text = "Ver detalle")
+                    Text(text = "Ver más")
                 }
             }
         }
