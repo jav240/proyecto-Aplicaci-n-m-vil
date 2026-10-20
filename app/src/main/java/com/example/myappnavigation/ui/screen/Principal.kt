@@ -76,17 +76,17 @@ fun Principal(
 
 
             Button(onClick = { onNavigateToVuelos() }, modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Ver vuelos disponibles")
+                Text(text = "Reservar un vuelo")
             }
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Funcionalidad 2: ir al aeródromo (solo si ya aceptó un vuelo)
+
             Button(
                 onClick = { onNavigateToPase() },
                 enabled = sesion.tieneVuelo,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Ir a mi pase de abordaje")
+                Text(text = "Ver mi pase de abordaje")
             }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
@@ -94,12 +94,12 @@ fun Principal(
                 enabled = sesion.tieneVuelo,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Mi consentimiento de vuelo")
+                Text(text = "Firmar mi consentimiento")
             }
             if (!sesion.tieneVuelo) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    "Acepta un vuelo para habilitar tu pase y tu consentimiento.",
+                    "Reserva un vuelo para habilitar tu pase y tu consentimiento.",
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

@@ -70,11 +70,11 @@ fun PaseAbordaje(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("Muestra este pase en el aeródromo", style = MaterialTheme.typography.headlineMedium)
+            Text("Tu pase de abordaje", style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(16.dp))
 
             if (vuelo == null) {
-                Text("Acepta un vuelo para ver tu pase.", style = MaterialTheme.typography.bodyLarge)
+                Text("Aún no tienes un vuelo aceptado.", style = MaterialTheme.typography.bodyLarge)
             } else {
                 Card(
                     modifier = Modifier.fillMaxWidth(),

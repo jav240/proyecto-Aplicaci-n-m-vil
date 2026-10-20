@@ -57,7 +57,7 @@ fun VuelosDisponibles(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            Text("Elige tu vuelo", style = MaterialTheme.typography.headlineMedium)
+            Text("Elige tu vuelo recreativo", style = MaterialTheme.typography.headlineMedium)
             Text("(datos ficticios de ejemplo)", style = MaterialTheme.typography.bodyLarge)
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -79,16 +79,16 @@ fun VuelosDisponibles(
                         hoy.get(Calendar.DAY_OF_MONTH)
                     ).show()
                 }) {
-                    Text(text = "Elegir fecha")
+                    Text(text = "Filtrar por fecha")
                 }
             }
 
             val fecha = viewModel.fechaFiltro
             if (fecha != null) {
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("Mostrando vuelos del " + fecha, style = MaterialTheme.typography.bodyLarge)
+                Text("Vuelos del día " + fecha, style = MaterialTheme.typography.bodyLarge)
                 OutlinedButton(onClick = { viewModel.quitarFiltro() }) {
-                    Text(text = "Quitar filtro")
+                    Text(text = "Ver todos los vuelos")
                 }
             }
             Spacer(modifier = Modifier.height(12.dp))

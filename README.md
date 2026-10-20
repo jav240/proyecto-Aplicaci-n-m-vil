@@ -2,7 +2,7 @@
 
 App Android (Kotlin, Jetpack Compose, Material 3) para el rol **socio** del Club Aéreo del Personal de BancoEstado.
 
-**Integrantes:** (completar con nombres y número de equipo)
+**Integrantes:** Fransisco, Javier
 
 ## Funcionalidades
 - Registro e inicio de sesión con formularios validados (ícono y mensaje por campo).
@@ -42,4 +42,10 @@ El pase de abordaje genera un QR con ZXing (`util/GeneradorQr.kt`) con los datos
 
 
 ## Envío real de correo
-`util/CorreoSmtp.kt` envía la confirmación (con el QR adjunto) por SMTP de Gmail al aceptar el vuelo. Completa `REMITENTE` y `CLAVE_APP` (contraseña de aplicación de Google) en `util/ConfigCorreo.kt`. Si quedan vacíos, la app abre la app de correo del dispositivo como respaldo.
+`util/CorreoSmtp.kt` envía la confirmación (con el QR adjunto) por SMTP de Gmail al aceptar el vuelo. Completa `REMITENTE` y `CLAVE_APP` (contraseña de aplicación de Google) en `util/ConfigCorreo.kt`. Si quedan vacíos, la app abre la app de correo del dispositivo como respaldo
+
+Para crear la contraseña de aplicación: cuenta Google, Seguridad, Verificación en 2 pasos, Contraseñas de aplicaciones.
+
+
+## Pantallas
+Inicio, Login, Registro, Menú del socio, Vuelos disponibles, Detalle del vuelo, Consentimiento y Pase de abordaje.

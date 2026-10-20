@@ -69,7 +69,7 @@ fun Consentimiento(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("Antes de abordar", style = MaterialTheme.typography.headlineMedium)
+            Text("Consentimiento antes de abordar", style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(16.dp))
 
             if (vuelo == null) {
@@ -117,7 +117,7 @@ fun Consentimiento(
                                     checked = firmado,
                                     onCheckedChange = { sesion.onConsentimientoChanged(it) }
                                 )
-                                Text("Leí y acepto el consentimiento", fontSize = 14.sp)
+                                Text("Declaro haber leído y acepto el consentimiento", fontSize = 14.sp)
                             }
                         }
                     }

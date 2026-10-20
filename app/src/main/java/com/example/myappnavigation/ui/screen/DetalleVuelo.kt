@@ -91,7 +91,7 @@ fun DetalleVuelo(
                                 fontWeight = FontWeight.Bold
                             )
                             Text("Fecha: " + vuelo.fechaTexto, fontSize = 16.sp)
-                            Text("Bloque: " + vuelo.horario, fontSize = 16.sp)
+                            Text("Horario: " + vuelo.horario, fontSize = 16.sp)
                             Text("Aeronave: " + vuelo.aeronave, fontSize = 16.sp)
                             Text("Piloto al mando: " + vuelo.piloto, fontSize = 16.sp)
                             Text("Cupos disponibles: " + vuelo.cupos, fontSize = 16.sp)
@@ -104,7 +104,7 @@ fun DetalleVuelo(
                 }
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    "Al aceptar el vuelo te llegará la confirmación a tu correo.",
+                    "Te enviaremos la confirmación a tu correo al aceptar el vuelo.",
                     style = MaterialTheme.typography.bodyLarge
                 )
                 Spacer(modifier = Modifier.height(16.dp))
@@ -140,7 +140,7 @@ fun DetalleVuelo(
                     colors = ButtonDefaults.buttonColors(containerColor = VerdeCapebe),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = "Aceptar este vuelo")
+                    Text(text = "Confirmar este vuelo")
                 }
             }
         }
