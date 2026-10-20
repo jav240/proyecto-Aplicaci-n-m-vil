@@ -23,7 +23,7 @@ object CalendarioNativo {
             putExtra(CalendarContract.Events.EVENT_LOCATION, "Aeródromo " + vuelo.base)
             putExtra(
                 CalendarContract.Events.DESCRIPTION,
-                "Aeronave: " + vuelo.aeronave + "\nPiloto: " + vuelo.piloto +
+                "Base: " + vuelo.base + "\nAeronave: " + vuelo.aeronave + "\nPiloto: " + vuelo.piloto +
                     "\nRecuerda firmar el consentimiento y llevar tu pase con el código QR."
             )
             putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, inicio)
