@@ -16,3 +16,6 @@ local.properties
 .kotlin
 build/
 .idea/
+# Keystore y binarios de release
+app/keystore/
+app/release/
