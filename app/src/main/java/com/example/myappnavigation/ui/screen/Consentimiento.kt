@@ -123,6 +123,10 @@ fun Consentimiento(
                     }
                 }
             }
+            sesion.mensaje?.let {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(it, color = MaterialTheme.colorScheme.error, fontSize = 14.sp)
+            }
             Spacer(modifier = Modifier.height(24.dp))
             Button(onClick = { onVolverMenu() }, modifier = Modifier.fillMaxWidth()) {
                 Text(text = "Volver al menú")

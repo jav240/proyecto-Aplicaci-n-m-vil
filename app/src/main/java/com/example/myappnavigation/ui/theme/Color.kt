@@ -10,7 +10,7 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-// Colores de CAPEBE
+
 val AzulCapebe = Color(0xFF0B2A4A)
 val NaranjaCapebe = Color(0xFFFF8F00)
 val CieloCapebe = Color(0xFFEAF4FF)

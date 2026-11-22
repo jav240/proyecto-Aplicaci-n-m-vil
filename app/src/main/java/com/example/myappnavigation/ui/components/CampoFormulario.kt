@@ -17,11 +17,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import com.example.myappnavigation.ui.theme.VerdeCapebe
 
-/**
- * Campo de formulario reutilizable: ícono a la izquierda, ícono de estado
- * (error o correcto) a la derecha y mensaje de error debajo.
- * No contiene reglas de validación: recibe el error ya calculado por el ViewModel.
- */
+
 @Composable
 fun CampoFormulario(
     value: String,

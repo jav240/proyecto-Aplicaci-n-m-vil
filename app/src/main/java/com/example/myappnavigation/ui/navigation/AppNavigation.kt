@@ -1,10 +1,22 @@
 package com.example.myappnavigation.ui.navigation
 
+import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.flow.first
+import com.example.myappnavigation.ui.screen.Admin
 import com.example.myappnavigation.ui.screen.Consentimiento
 import com.example.myappnavigation.ui.screen.DetalleVuelo
 import com.example.myappnavigation.ui.screen.Inicio
@@ -13,14 +25,16 @@ import com.example.myappnavigation.ui.screen.PaseAbordaje
 import com.example.myappnavigation.ui.screen.Principal
 import com.example.myappnavigation.ui.screen.Register
 import com.example.myappnavigation.ui.screen.VuelosDisponibles
+import com.example.myappnavigation.ui.theme.CieloCapebe
 import com.example.myappnavigation.ui.viewmodel.SesionViewModel
 
-// definimos las rutas de navegación
+
 object Routes {
     const val INICIO = "inicio"
     const val LOGIN = "login"
     const val REGISTER = "register"
     const val PRINCIPAL = "principal"
+    const val ADMIN = "admin"
     const val VUELOS = "vuelos"
     const val DETALLE = "detalle"
     const val CONSENTIMIENTO = "consentimiento"
@@ -30,12 +44,45 @@ object Routes {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    // Estado compartido entre pantallas: sesión, vuelo aceptado y consentimiento
+
     val sesion: SesionViewModel = viewModel()
+    val context = LocalContext.current
+
+
+    LaunchedEffect(Unit) { sesion.restaurarSesion() }
+
+    if (sesion.restaurando) {
+        Box(
+            modifier = Modifier.fillMaxSize().background(CieloCapebe),
+            contentAlignment = Alignment.Center
+        ) { CircularProgressIndicator() }
+        return
+    }
+
+
+    val destinoInicial = remember {
+        when {
+            !sesion.haySesion -> Routes.INICIO
+            sesion.esAdmin -> Routes.ADMIN
+            else -> Routes.PRINCIPAL
+        }
+    }
+
+
+    LaunchedEffect(sesion.sesionExpirada) {
+        if (sesion.sesionExpirada) {
+            navController.currentBackStackEntryFlow.first()
+            Toast.makeText(context, "Tu sesión expiró. Inicia sesión nuevamente.", Toast.LENGTH_LONG).show()
+            navController.navigate(Routes.LOGIN) {
+                popUpTo(navController.graph.id) { inclusive = true }
+            }
+            sesion.sesionExpiradaAtendida()
+        }
+    }
 
     NavHost(
         navController = navController,
-        startDestination = Routes.INICIO     // pantalla de inicio
+        startDestination = destinoInicial
     ) {
         composable(Routes.INICIO) {
             Inicio(
@@ -46,10 +93,12 @@ fun AppNavigation() {
         composable(Routes.LOGIN) {
             Login(
                 onNavigateToRegister = { navController.navigate(Routes.REGISTER) },
-                onLoginSuccess = { correo ->
-                    sesion.iniciarSesion(correo)
-                    // navega al menú principal y limpia la pila de login
-                    navController.navigate(Routes.PRINCIPAL) {
+                onLoginSuccess = { usuario ->
+                    sesion.iniciarSesion(usuario)
+                    // según el rol que entrega el backend: administrador -> panel admin, socio -> menú
+                    val destino = if (sesion.esAdmin) Routes.ADMIN else Routes.PRINCIPAL
+                    // navega a la pantalla del rol y limpia la pila de login
+                    navController.navigate(destino) {
                         popUpTo(Routes.LOGIN) { inclusive = true }
                     }
                 }
@@ -77,6 +126,18 @@ fun AppNavigation() {
                     sesion.cerrarSesion()
                     navController.navigate(Routes.LOGIN) {
                         popUpTo(Routes.PRINCIPAL) { inclusive = true }
+                    }
+                }
+            )
+        }
+
+        composable(Routes.ADMIN) {
+            Admin(
+                sesion = sesion,
+                onLogout = {
+                    sesion.cerrarSesion()
+                    navController.navigate(Routes.LOGIN) {
+                        popUpTo(Routes.ADMIN) { inclusive = true }
                     }
                 }
             )

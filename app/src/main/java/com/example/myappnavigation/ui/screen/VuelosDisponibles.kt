@@ -19,7 +19,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -42,6 +44,8 @@ fun VuelosDisponibles(
     viewModel: VuelosViewModel = viewModel()
 ) {
     val context = LocalContext.current
+    // GET /vuelos al entrar a la pantalla
+    LaunchedEffect(Unit) { viewModel.cargar() }
 
     Scaffold(
         topBar = { Header("VUELOS DISPONIBLES") },
@@ -58,7 +62,6 @@ fun VuelosDisponibles(
             verticalArrangement = Arrangement.Top
         ) {
             Text("Elige tu vuelo recreativo", style = MaterialTheme.typography.headlineMedium)
-            Text("(datos ficticios de ejemplo)", style = MaterialTheme.typography.bodyLarge)
             Spacer(modifier = Modifier.height(12.dp))
 
 
@@ -94,7 +97,22 @@ fun VuelosDisponibles(
             Spacer(modifier = Modifier.height(12.dp))
 
             val vuelos = viewModel.vuelosFiltrados
-            if (vuelos.isEmpty()) {
+            if (viewModel.cargando) {
+                CircularProgressIndicator()
+            }
+            if (viewModel.mostrandoGuardados) {
+                Text(
+                    "Sin conexión: se muestran los últimos vuelos guardados. Los cupos pueden haber cambiado.",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                OutlinedButton(onClick = { viewModel.cargar() }) { Text(text = "Reintentar") }
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+            viewModel.error?.let {
+                Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodyLarge)
+                OutlinedButton(onClick = { viewModel.cargar() }) { Text(text = "Reintentar") }
+            }
+            if (vuelos.isEmpty() && !viewModel.cargando && viewModel.error == null) {
                 Text("Aún no hay vuelos para esta fecha.", style = MaterialTheme.typography.bodyLarge)
             }
             vuelos.forEach { vuelo ->

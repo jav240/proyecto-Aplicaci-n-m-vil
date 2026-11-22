@@ -124,7 +124,7 @@ fun Register(
             Spacer(modifier = Modifier.height(20.dp))
             Button(
                 onClick = {
-                    viewModel.onRegisterClick(context) {
+                    viewModel.onRegisterClick {
                         Toast.makeText(
                             context,
                             "¡Registro exitoso! Por favor inicia sesión.",

@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import com.example.myappnavigation.R
 import com.example.myappnavigation.ui.components.Footer
 import com.example.myappnavigation.ui.components.Header
+import com.example.myappnavigation.ui.components.TarjetaClima
 import com.example.myappnavigation.ui.theme.AzulCapebe
 import com.example.myappnavigation.ui.theme.CieloCapebe
 import com.example.myappnavigation.ui.viewmodel.SesionViewModel
@@ -103,6 +104,9 @@ fun DetalleVuelo(
                     }
                 }
                 Spacer(modifier = Modifier.height(12.dp))
+
+                TarjetaClima(base = vuelo.base)
+                Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     "Te enviaremos la confirmación a tu correo al aceptar el vuelo.",
                     style = MaterialTheme.typography.bodyLarge
@@ -110,31 +114,40 @@ fun DetalleVuelo(
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
                     onClick = {
-                        if (sesion.aceptarVueloSeleccionado()) {
-                            val correo = sesion.correo
-                            val firmado = sesion.consentimientoFirmado
-                            if (CorreoSmtp.configurado()) {
 
-                                Toast.makeText(context, "¡Vuelo aceptado! Enviando confirmación a tu correo...", Toast.LENGTH_SHORT).show()
-                                CorreoSmtp.enviarConfirmacion(correo, vuelo, firmado) { ok ->
-                                    val aviso = if (ok) {
-                                        "Confirmación enviada a " + correo
-                                    } else {
-                                        "No se pudo enviar el correo. Revisa tu conexión."
+                        sesion.aceptarVueloSeleccionado { aceptado ->
+                            if (aceptado) {
+                                val correo = sesion.correo
+                                val firmado = sesion.consentimientoFirmado
+                                if (CorreoSmtp.configurado()) {
+
+                                    Toast.makeText(context, "¡Vuelo aceptado! Enviando confirmación a tu correo...", Toast.LENGTH_SHORT).show()
+                                    CorreoSmtp.enviarConfirmacion(correo, vuelo, firmado) { ok ->
+                                        val aviso = if (ok) {
+                                            "Confirmación enviada a " + correo
+                                        } else {
+                                            "No se pudo enviar el correo. Revisa tu conexión."
+                                        }
+                                        Toast.makeText(context, aviso, Toast.LENGTH_LONG).show()
                                     }
-                                    Toast.makeText(context, aviso, Toast.LENGTH_LONG).show()
-                                }
-                            } else {
-
-                                val abierto = CorreoNativo.abrirBorradorConfirmacion(context, correo, vuelo)
-                                val mensaje = if (abierto) {
-                                    "¡Vuelo aceptado! Revisa tu correo para enviar la confirmación."
                                 } else {
-                                    "¡Vuelo aceptado! No hay una app de correo en este dispositivo."
+
+                                    val abierto = CorreoNativo.abrirBorradorConfirmacion(context, correo, vuelo)
+                                    val mensaje = if (abierto) {
+                                        "¡Vuelo aceptado! Revisa tu correo para enviar la confirmación."
+                                    } else {
+                                        "¡Vuelo aceptado! No hay una app de correo en este dispositivo."
+                                    }
+                                    Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show()
                                 }
-                                Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show()
+                                onVueloAceptado()
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    sesion.mensaje ?: "No se pudo reservar el vuelo.",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
-                            onVueloAceptado()
                         }
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = VerdeCapebe),

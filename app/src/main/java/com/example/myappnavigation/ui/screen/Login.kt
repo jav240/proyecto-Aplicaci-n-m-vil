@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myappnavigation.data.remote.UsuarioApi
 import com.example.myappnavigation.ui.components.CampoFormulario
 import com.example.myappnavigation.ui.components.Footer
 import com.example.myappnavigation.ui.components.Header
@@ -36,14 +37,14 @@ import com.example.myappnavigation.ui.viewmodel.LoginViewModel
 @Composable
 fun Login(
     onNavigateToRegister: () -> Unit,
-    onLoginSuccess: (String) -> Unit,
+    onLoginSuccess: (UsuarioApi) -> Unit,
     viewModel: LoginViewModel = viewModel()
 ) {
     val state = viewModel.uiState
     val context = LocalContext.current
 
     Scaffold(
-        topBar = { Header("INGRESO DEL SOCIO") },
+        topBar = { Header("INGRESO") },
         bottomBar = { Footer() }
     ) { innerPadding ->
         Column(
@@ -92,14 +93,15 @@ fun Login(
             Spacer(modifier = Modifier.height(24.dp))
             Button(
                 onClick = {
-                    viewModel.onLoginClick(context) {
+                    viewModel.onLoginClick { usuario ->
                         Toast.makeText(context, "¡Bienvenid@ de nuevo!", Toast.LENGTH_SHORT).show()
-                        onLoginSuccess(viewModel.uiState.email.trim().lowercase())
+                        onLoginSuccess(usuario)
                     }
                 },
+                enabled = !viewModel.cargando,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Ingresar")
+                Text(text = if (viewModel.cargando) "Ingresando..." else "Ingresar")
             }
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedButton(

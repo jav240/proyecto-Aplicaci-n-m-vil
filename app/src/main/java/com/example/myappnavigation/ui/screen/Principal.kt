@@ -74,7 +74,6 @@ fun Principal(
             Text("¡Bienvenid@, " + sesion.correo + "!", style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(24.dp))
 
-
             Button(onClick = { onNavigateToVuelos() }, modifier = Modifier.fillMaxWidth()) {
                 Text(text = "Reservar un vuelo")
             }
@@ -102,6 +101,19 @@ fun Principal(
                     "Reserva un vuelo para habilitar tu pase y tu consentimiento.",
                     style = MaterialTheme.typography.bodyMedium
                 )
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            // DELETE /reserva: cancela la reserva y devuelve el cupo
+            OutlinedButton(
+                onClick = { sesion.cancelarReserva() },
+                enabled = sesion.tieneVuelo,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Cancelar mi reserva")
+            }
+            sesion.mensaje?.let {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(it, style = MaterialTheme.typography.bodyMedium)
             }
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedButton(onClick = { onLogout() }, modifier = Modifier.fillMaxWidth()) {
