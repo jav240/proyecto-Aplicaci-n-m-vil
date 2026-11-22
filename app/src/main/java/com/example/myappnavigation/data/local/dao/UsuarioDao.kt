@@ -16,4 +16,7 @@ interface UsuarioDao {
 
     @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
     suspend fun getUserByEmail(email: String): UsuarioEntity?
+
+    @Query("SELECT * FROM users ORDER BY name")
+    suspend fun getAllUsers(): List<UsuarioEntity>
 }
