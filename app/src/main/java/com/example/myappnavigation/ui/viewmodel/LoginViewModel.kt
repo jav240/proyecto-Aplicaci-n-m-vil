@@ -1,24 +1,30 @@
 package com.example.myappnavigation.ui.viewmodel
 
-import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myappnavigation.data.database.AppDatabase
+import com.example.myappnavigation.data.remote.Servicios
+import com.example.myappnavigation.data.remote.UsuarioApi
+import com.example.myappnavigation.data.repository.Resultado
+import com.example.myappnavigation.data.repository.VuelosRepository
 import com.example.myappnavigation.model.LoginModel
-import com.example.myappnavigation.util.Seguridad
 import com.example.myappnavigation.util.Validaciones
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val repositorio: VuelosRepository) : ViewModel() {
+
+    constructor() : this(Servicios.vuelosRepositorio)
 
     // Estado que administra los datos del formulario
     var uiState by mutableStateOf(LoginModel())
         private set
 
     var errorMessage by mutableStateOf<String?>(null)
+        private set
+
+    var cargando by mutableStateOf(false)
         private set
 
     fun onEmailChanged(email: String) {
@@ -37,7 +43,7 @@ class LoginViewModel : ViewModel() {
         errorMessage = null
     }
 
-    fun onLoginClick(context: Context, onSuccess: () -> Unit) {
+    fun onLoginClick(onSuccess: (UsuarioApi) -> Unit) {
         val email = uiState.email.trim().lowercase()
         val password = uiState.password
 
@@ -50,15 +56,15 @@ class LoginViewModel : ViewModel() {
         }
 
         viewModelScope.launch {
-            val db = AppDatabase.getDatabase(context)
-            val user = db.usuarioDao().getUserByEmail(email)
-
-            if (user != null && user.password == Seguridad.hash(password)) {
-                errorMessage = null
-                onSuccess()   // Inicia sesión con éxito
-            } else {
-                errorMessage = "Correo o contraseña incorrectos."
+            cargando = true
+            when (val resultado = repositorio.login(email, password)) {
+                is Resultado.Exito -> {
+                    errorMessage = null
+                    onSuccess(resultado.datos)   // Inicia sesión con éxito
+                }
+                is Resultado.Error -> errorMessage = resultado.mensaje
             }
+            cargando = false
         }
     }
 }

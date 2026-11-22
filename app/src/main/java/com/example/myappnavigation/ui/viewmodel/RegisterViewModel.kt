@@ -1,21 +1,25 @@
 package com.example.myappnavigation.ui.viewmodel
 
-import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myappnavigation.data.database.AppDatabase
-import com.example.myappnavigation.data.local.entity.UsuarioEntity
+import com.example.myappnavigation.data.remote.Servicios
+import com.example.myappnavigation.data.repository.Resultado
+import com.example.myappnavigation.data.repository.VuelosRepository
 import com.example.myappnavigation.model.RegisterModel
-import com.example.myappnavigation.util.Seguridad
 import com.example.myappnavigation.util.Validaciones
 import kotlinx.coroutines.launch
 
-class RegisterViewModel : ViewModel() {
+class RegisterViewModel(private val repositorio: VuelosRepository) : ViewModel() {
+
+    constructor() : this(Servicios.vuelosRepositorio)
 
     var uiState by mutableStateOf(RegisterModel())
+        private set
+
+    var cargando by mutableStateOf(false)
         private set
 
     /** Verdadero cuando todos los campos cumplen las reglas (sirve para animar el botón). */
@@ -61,7 +65,7 @@ class RegisterViewModel : ViewModel() {
         )
     }
 
-    fun onRegisterClick(context: Context, onSuccess: () -> Unit) {
+    fun onRegisterClick(onSuccess: () -> Unit) {
         val s = uiState
 
         val nameError = Validaciones.nombre(s.name)
@@ -80,27 +84,24 @@ class RegisterViewModel : ViewModel() {
             return
         }
 
-        // método asincrónico en SQLite con Room
+        // Crea la cuenta en el microservicio (POST /auth/register)
         viewModelScope.launch {
-            val db = AppDatabase.getDatabase(context)
-            val correo = s.email.trim().lowercase()
-            val existingUser = db.usuarioDao().getUserByEmail(correo)
-
-            if (existingUser != null) {
-                uiState = uiState.copy(
-                    emailError = "Este correo ya está registrado.",
-                    errorMessage = "El correo ya está registrado."
-                )
-            } else {
-                val newUser = UsuarioEntity(
-                    name = s.name.trim(),
-                    email = correo,
-                    password = Seguridad.hash(s.password)
-                )
-                db.usuarioDao().registerUser(newUser)
-                uiState = RegisterModel()
-                onSuccess()
+            cargando = true
+            when (val resultado = repositorio.register(s.name, s.email, s.password)) {
+                is Resultado.Exito -> {
+                    uiState = RegisterModel()
+                    onSuccess()
+                }
+                is Resultado.Error -> {
+                    uiState = uiState.copy(
+                        nameError = resultado.campos["nombre"],
+                        emailError = resultado.campos["email"],
+                        passwordError = resultado.campos["password"],
+                        errorMessage = resultado.mensaje
+                    )
+                }
             }
+            cargando = false
         }
     }
 }
