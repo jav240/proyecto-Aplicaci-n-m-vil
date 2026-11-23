@@ -19,3 +19,6 @@ build/
 # Keystore y binarios de release
 app/keystore/
 app/release/
+
+# Archivos temporales de pruebas locales
+*.tmp
