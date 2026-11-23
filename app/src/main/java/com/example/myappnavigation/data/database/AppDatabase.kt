@@ -35,5 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
+
+        // Esquema local Room sincronizado con entidades de sesion y vuelos
     }
 }
