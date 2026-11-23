@@ -98,3 +98,8 @@ util/              Validaciones, DescripcionClima, GeneradorQr, CorreoSmtp/Corre
 ## Cobertura de pruebas
 
 `./gradlew jacocoTestReport` corre los tests unitarios y deja el reporte en `app/build/reports/jacoco/index.html` (se excluyen pantallas Compose, tema, navegación y Room generado).
+
+## Pruebas de Aceptacion
+- Flujo de inicio de sesion y registro validado.
+- Consulta de vuelos disponibles y descarga de pase de abordaje con QR verificada.
+- Sincronizacion de clima en tiempo real operativa.
