@@ -40,3 +40,5 @@ object Seguridad {
             .digest(texto.toByteArray())
             .joinToString("") { "%02x".format(it) }
 }
+
+// Validaciones verificadas para formularios de registro, inicio de sesion y administracion
